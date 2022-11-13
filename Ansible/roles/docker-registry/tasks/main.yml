@@ -7,4 +7,4 @@
       repository: mehdilaouiti/devops
       tag: latest
       push: yes
-      source: locals
+      source: local
