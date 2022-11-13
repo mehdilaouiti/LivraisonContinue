@@ -1,0 +1,23 @@
+pipeline {
+	agent any
+	stages {
+		stage('PULL') {
+		 steps {
+      script {
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+          userRemoteConfigs: [[
+            credentialsId: 'ed2f9486-0264-48a0-828e-dfe75f4a494d',
+            url : 'https://github.com/mehdilaouiti/LivraisonContinue.git']]])
+			
+			        }
+		         }
+            }
+		stage('BUILD') {
+		 steps {
+      script {
+        sh "ansible-playbook Ansible/build.yml -i Ansible/inventory/host.yml"
+}
+            }
+        }
+}
+}
