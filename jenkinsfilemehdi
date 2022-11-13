@@ -26,5 +26,18 @@ pipeline {
              }
             }
         }
+        stage('DOCKER LOGIN'){
+            	steps{
+			
+                sh 'docker login -u mehdilaouiti -p Mehdi2798'
+            }
+        }
+ 		stage('DOCKER-REGISTRY') {
+		 steps {
+      script {
+        sh "ansible-playbook Ansible/docker-registry.yml -i Ansible/inventory/host.yml"
+             }
+            }
+        }
 }
 }
